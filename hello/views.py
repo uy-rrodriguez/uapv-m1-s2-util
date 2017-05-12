@@ -21,7 +21,6 @@ def db(request):
 
 def get_util_ip(request):
     sessions = Session.objects.filter(key="ip")
-    print sessions
     if len(sessions) > 0:
         ip = sessions[0].value
     else:
