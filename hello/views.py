@@ -18,3 +18,5 @@ def db(request):
 
     return render(request, 'db.html', {'greetings': greetings})
 
+def util_ip_appdist(request):
+    return "192.168.1.1"

@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^$', hello.views.index, name='index'),
     url(r'^db', hello.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^util_ip_appdist', hello.views.util_ip_appdist, name='util_ip_appdist'),
 ]
