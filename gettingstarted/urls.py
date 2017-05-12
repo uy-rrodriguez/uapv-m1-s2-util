@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^$', hello.views.index, name='index'),
     url(r'^db', hello.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^util_ip_appdist', hello.views.util_ip_appdist, name='util_ip_appdist'),
+    url(r'^get_util_ip/', hello.views.get_util_ip, name='get_util_ip'),
+    url(r'^set_util_ip/(?P<ip>[0-9]+)/$', hello.views.set_util_ip, name='set_util_ip'),
 ]

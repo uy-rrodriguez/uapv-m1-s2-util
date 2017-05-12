@@ -18,5 +18,13 @@ def db(request):
 
     return render(request, 'db.html', {'greetings': greetings})
 
-def util_ip_appdist(request):
-    return "192.168.1.1"
+def get_util_ip(request):
+    if "ip" in request.session:
+        ip = request.session["ip"]
+    else:
+        ip = "0.0.0.0"
+    return HttpResponse("%s" % ip)
+
+def set_util_ip(request, ip):
+    request.session["ip"] = ip
+    return HttpResponse("IP set %s." % ip)
