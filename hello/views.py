@@ -21,6 +21,7 @@ def db(request):
 
 def get_util_ip(request):
     sessions = Session.objects.filter(key="ip")
+    print sessions
     if len(sessions) > 0:
         ip = sessions[0].value
     else:
@@ -28,11 +29,12 @@ def get_util_ip(request):
     return HttpResponse("%s" % ip)
 
 def set_util_ip(request, ip):
-    #sessions = Session.objects.filter(key="ip")
-    #if len(sessions) > 0:
-    #    s = sessions[0]
-    #else:
-    s = Session(key="ip", value=ip)
+    sessions = Session.objects.filter(key="ip")
+    if len(sessions) > 0:
+        s = sessions[0]
+        s.value = ip
+    else:
+        s = Session(key="ip", value=ip)
     
     s.save()
-    return HttpResponse("IP set %s." % s.value)
+    return HttpResponse("IP set %s" % s.value)
