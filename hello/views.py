@@ -28,11 +28,11 @@ def get_util_ip(request):
     return HttpResponse("%s" % ip)
 
 def set_util_ip(request, ip):
-    sessions = Session.objects.filter(key="ip")
-    if len(sessions) > 0:
-        s = sessions[0]
-    else:
-        s = Session(key="ip", value=ip)
+    #sessions = Session.objects.filter(key="ip")
+    #if len(sessions) > 0:
+    #    s = sessions[0]
+    #else:
+    s = Session(key="ip", value=ip)
     
     s.save()
     return HttpResponse("IP set %s." % s.value)
