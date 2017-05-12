@@ -1,1 +1,1 @@
-web: python manage.py syncdb & gunicorn gettingstarted.wsgi --log-file -
+web: python manage.py migrate & gunicorn gettingstarted.wsgi --log-file -
