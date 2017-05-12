@@ -14,5 +14,5 @@ urlpatterns = [
     url(r'^db', hello.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^get_util_ip/', hello.views.get_util_ip, name='get_util_ip'),
-    url(r'^set_util_ip/(?P<ip>[0-9]+)/$', hello.views.set_util_ip, name='set_util_ip'),
+    url(r'^set_util_ip/(?P<ip>[0-9]{1,3}(\.[0-9]{1,3}){3})/$', hello.views.set_util_ip, name='set_util_ip'),
 ]

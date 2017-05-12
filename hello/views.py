@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .models import Greeting
+from .models import Session
 
 # Create your views here.
 def index(request):
@@ -19,12 +20,19 @@ def db(request):
     return render(request, 'db.html', {'greetings': greetings})
 
 def get_util_ip(request):
-    if "ip" in request.session:
-        ip = request.session["ip"]
+    sessions = Session.objects.filter(key="ip")
+    if len(sessions) > 0:
+        ip = sessions[0].value
     else:
         ip = "0.0.0.0"
     return HttpResponse("%s" % ip)
 
 def set_util_ip(request, ip):
-    request.session["ip"] = ip
-    return HttpResponse("IP set %s." % ip)
+    sessions = Session.objects.filter(key="ip")
+    if len(sessions) > 0:
+        s = sessions[0]
+    else:
+        s = Session(key="ip", value=ip)
+    
+    s.save()
+    return HttpResponse("IP set %s." % s.value)
